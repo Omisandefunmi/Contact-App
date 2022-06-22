@@ -34,17 +34,6 @@ class ContactServiceImplTest {
         assertEquals("0987", contact.getPhoneNumber());
     }
 
-//    @Test
-//    public void saveContact_findContact_returnAllMatchingContacts(){
-//        contactService.addContact("ijebu", "ode", "0987");
-//        contactService.addContact("ilesa", "buga", "1010");
-//        contactService.addContact("ijebu", "ola", "8883");
-//
-//
-//        assertEquals("[Contact(id=1, firstName=ijebu, lastName=ode, phoneNumber=0987), Contact(id=3, " +
-//                "firstName=ijebu, lastName=ola, phoneNumber=8883)]", contact.toString());
-//    }
-
     @Test
     public void saveContacts_findContact_returnAllMatchingNamesInContacts(){
         contactService.addContact("ijebu", "buga", "0987");
@@ -52,13 +41,14 @@ class ContactServiceImplTest {
         contactService.addContact("osun", "ola", "8883");
 
         List<Contact> contacts = contactService.findByName("Buga");
-        String searchResult = "[Contact(id=1, firstName=ijebu, lastName=buga, phoneNumber=0987), Contact(id=2, " +
-                "firstName=ilesa, lastName=buga, phoneNumber=1010)]";
+        String searchResult = "[Contact(id=2, firstName=buga, lastName=ijesha, phoneNumber=1010), Contact(id=1, " +
+                "firstName=ijebu, lastName=buga, phoneNumber=0987)]";
         assertEquals(searchResult, contacts.toString());
+        assertEquals(2, contacts.size());
     }
 
     @Test
-    public void saveContacts_findContact_returnPhoneNumber(){
+    public void saveContacts_findContactByPhoneNumber_returnContact(){
         contactService.addContact("ijebu", "buga", "0987");
         contactService.addContact("ilesa", "buga", "1010");
         contactService.addContact("osun", "ola", "8883");
@@ -69,6 +59,28 @@ class ContactServiceImplTest {
         assertEquals(searchResult, contacts.toString());
     }
 
+    @Test
+    public void saveContact_deleteSavedContactByFirstName(){
+        contactService.addContact("ijebu", "buga", "0987");
+        contactService.addContact("ilesa", "buga", "1010");
+        contactService.addContact("osun", "ola", "8883");
 
 
+        contactService.deleteByFirstNameAndPhoneNumber("osun", "8893");
+        assertEquals(2, contactService.phoneBookSize());
+    }
+
+    @Test
+    public void saveContact_deleteContactByPhoneNumber(){
+        contactService.addContact("ijebu", "buga", "0987");
+        contactService.addContact("ilesa", "buga", "1010");
+        contactService.addContact("osun", "ola", "8883");
+
+
+        contactService.deleteByPhoneNumber("8893");
+        assertEquals(2, contactService.phoneBookSize());
+    }
 }
+
+
+

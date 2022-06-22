@@ -13,4 +13,6 @@ Contact save(Contact contact);
     List<Contact> findByLastName(String lastName);
 
     Contact findByPhoneNumber(String phoneNumber);
+
+    Contact deleteContact(Contact contact);
 }

@@ -8,9 +8,15 @@ public interface ContactService {
 
     void addContact(String firstName, String lastName, String phoneNumber);
 
-    Contact findById(int i);
+    Contact findById(int id);
 
-    List<Contact> findByName(String lastName);
+    List<Contact> findByName(String name);
 
     Contact findByPhoneNumber(String phoneNumber);
+
+    Contact deleteByFirstNameAndPhoneNumber(String firstName, String phoneNumber);
+
+    int phoneBookSize();
+
+    Contact deleteByPhoneNumber(String phoneNumber);
 }

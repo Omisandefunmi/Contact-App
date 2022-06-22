@@ -18,9 +18,8 @@ public class ContactRepositoryImpl implements ContactRepository {
     @Override
     public List<Contact> findByFirstName(String firstName) {
         List <Contact> contactsWithSameFirstName = new ArrayList<>();
-//        Contact contact;
+
         for (Contact contact : contacts) {
-//            contact = value;
             if (contact.getFirstName().equalsIgnoreCase(firstName)) {
                 contactsWithSameFirstName.add(contact);
             }
@@ -61,4 +60,11 @@ public class ContactRepositoryImpl implements ContactRepository {
         }
         return null;
     }
+
+    @Override
+    public Contact deleteContact(Contact contact) {
+        contacts.remove(contact);
+        return contact;
+    }
+
 }

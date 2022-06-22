@@ -108,4 +108,18 @@ class ContactRepositoryImplTest {
 
         assertEquals(boo, foundContact.toString());
     }
+
+    @Test
+    public void saveContact_deleteSavedContact(){
+        Contact contact = new Contact();
+        contact.setFirstName("Samson");
+        contact.setPhoneNumber("09900");
+
+
+        contactRepository.save(contact);
+        assertEquals(1, contactRepository.count());
+        contactRepository.deleteContact(contact);
+        assertEquals(0, contactRepository.count());
+
+    }
 }
