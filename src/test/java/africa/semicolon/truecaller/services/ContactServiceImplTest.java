@@ -18,7 +18,7 @@ class ContactServiceImplTest {
     @BeforeEach
     public void setUp(){
         contactRepository = new ContactRepositoryImpl();
-        contactService = new ContactServiceImpl(contactRepository);
+        contactService = new ContactServiceImpl();
 
 
     }
